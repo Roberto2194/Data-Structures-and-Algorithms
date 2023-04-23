@@ -17,20 +17,20 @@ public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
     // initial capacity of underlying resizing array
     public static final int INIT_CAPACITY = 8;
 
-    private Item[] a;       // array of items
+    private Item[] b;       // bag elements
     private int n;          // number of elements in bag
 
     /**
      * Initializes an empty bag.
      */
     public ResizingArrayBag() {
-        a = (Item[]) new Object[INIT_CAPACITY];
+        b = (Item[]) new Object[INIT_CAPACITY];
         n = 0;
     }
 
     public void add(Item item) {
-        if (n == a.length) resize(2 * a.length);
-        a[n++] = item;
+        if (n == b.length) resize(2 * b.length);
+        b[n++] = item;
     }
 
     public int size() {
@@ -46,8 +46,8 @@ public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
         assert capacity >= n;
         Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i < n; i++)
-            copy[i] = a[i];
-        a = copy;
+            copy[i] = b[i];
+        b = copy;
     }
 
     /**
@@ -69,7 +69,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            return a[i++];
+            return b[i++];
         }
     }
 

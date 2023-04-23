@@ -18,35 +18,34 @@ public class ResizingArrayStack<Item> implements Iterable<Item>, StackAPI<Item> 
     // initial capacity of underlying resizing array
     public static final int INIT_CAPACITY = 8;
 
-    private Item[] a;       // array of items
+    private Item[] s;       // stack elements
     private int n;          // number of elements in stack
 
     /**
      * Initializes an empty stack.
      */
     public ResizingArrayStack() {
-        a = (Item[]) new Object[INIT_CAPACITY];
+        s = (Item[]) new Object[INIT_CAPACITY];
         n = 0;
     }
 
     public void push(Item item) {
-        if (n == a.length) resize(a.length * 2);
-        a[n++] = item;
+        if (n == s.length) resize(s.length * 2);
+        s[n++] = item;
     }
 
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        Item item = a[n-1];     // save the item to return
-        a[n-1] = null;          // to avoid loitering
+        Item item = s[n-1];                                              // save the item to return
+        s[n-1] = null;                                                   // to avoid loitering
         n--;
-        // shrink the size of the array if necessary
-        if (n > 0 && n == a.length / 4) resize(a.length / 2);
-        return item;            // return the saved item
+        if (n > 0 && n == s.length / 4) resize(s.length / 2);   // shrink the size of the array if necessary
+        return item;                                                    // return the saved item
     }
 
     public Item peek() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        return a[n - 1];
+        return s[n - 1];
     }
 
     public int size() {
@@ -62,8 +61,8 @@ public class ResizingArrayStack<Item> implements Iterable<Item>, StackAPI<Item> 
         assert capacity >= n;
         Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i < n; i++)
-            copy[i] = a[i];
-        a = copy;
+            copy[i] = s[i];
+        s = copy;
     }
 
     /**
@@ -89,7 +88,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item>, StackAPI<Item> 
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            return a[i--];
+            return s[i--];
         }
     }
 
@@ -100,11 +99,11 @@ public class ResizingArrayStack<Item> implements Iterable<Item>, StackAPI<Item> 
      */
     public static void main(String[] args) {
         ResizingArrayStack<Integer> stack = new ResizingArrayStack<>();
-
-        // pushes: 25, 50, 75, 100, 125 into the stack
-        for (int i = 25; i < 150; i += 25) {
-            stack.push(i);
-        }
+        stack.push(25);
+        stack.push(50);
+        stack.push(75);
+        stack.push(100);
+        stack.push(125);
 
         System.out.println("peeking the element on top of the stack = " + stack.peek());
         System.out.println("popping out the element on top of the stack = " + stack.pop());
