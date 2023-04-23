@@ -87,11 +87,11 @@ public class LinkedStack<Item> implements Iterable<Item>, StackAPI<Item> {
      */
     public static void main(String[] args) {
         LinkedStack<Integer> stack = new LinkedStack<>();
-
-        // pushes: 10, 20, 30... 100 into the stack
-        for (int i = 10; i <= 100; i += 10) {
-            stack.push(i);
-        }
+        stack.push(25);
+        stack.push(50);
+        stack.push(75);
+        stack.push(100);
+        stack.push(125);
 
         System.out.println("peeking the element on top of the stack = " + stack.peek());
         System.out.println("popping out the element on top of the stack = " + stack.pop());
