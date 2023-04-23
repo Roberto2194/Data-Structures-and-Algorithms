@@ -12,40 +12,40 @@ import java.util.NoSuchElementException;
  * The <em>isEmpty</em>, and <em>size</em> operations take constant time.
  * Iteration takes time proportional to the number of items.
  */
-public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
+public class ResizingArrayBag<Item> implements BagAPI<Item>, Iterable<Item> {
 
     // initial capacity of underlying resizing array
     public static final int INIT_CAPACITY = 8;
 
     private Item[] b;       // bag elements
-    private int n;          // number of elements in bag
+    private int N;          // number of elements in bag
 
     /**
      * Initializes an empty bag.
      */
     public ResizingArrayBag() {
         b = (Item[]) new Object[INIT_CAPACITY];
-        n = 0;
+        N = 0;
     }
 
     public void add(Item item) {
-        if (n == b.length) resize(2 * b.length);
-        b[n++] = item;
+        if (N == b.length) resize(2 * b.length);
+        b[N++] = item;
     }
 
     public int size() {
-        return n;
+        return N;
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return N == 0;
     }
 
     // resize the underlying array holding the elements
     private void resize(int capacity) {
-        assert capacity >= n;
+        assert capacity >= N;
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < N; i++)
             copy[i] = b[i];
         b = copy;
     }
@@ -64,7 +64,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
         private int i = 0;
 
         public boolean hasNext() {
-            return i < n;
+            return i < N;
         }
 
         public Item next() {

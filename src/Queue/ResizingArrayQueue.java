@@ -3,31 +3,41 @@ package Queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ResizingArrayQueue<Item> implements Iterable<Item>, QueueAPI<Item> {
+/**
+ * <p>
+ * This implementation of {@code QueueAPI} uses a resizing array,
+ * which doubles the underlying array when it is full
+ * and halves the underlying array when it is one quarter full.
+ * </p>
+ * The <em>enqueue</em> and <em>dequeue</em> operations take constant amortized time.
+ * The <em>size</em>, <em>peek</em>, and <em>isEmpty</em> operations take constant time.
+ * Iteration takes time proportional to the number of items.
+ */
+public class ResizingArrayQueue<Item> implements QueueAPI<Item>, Iterable<Item> {
 
     // initial capacity of underlying resizing array
     public static final int INIT_CAPACITY = 8;
 
     private Item[] q;       // queue elements
-    private int n;          // number of elements in queue
+    private int N;          // number of elements in queue
     private int first;      // index of first element in the queue
     private int last;       // index of the next available slot
 
     /**
-     * Initializes an empty queue
+     * Initializes an empty queue.
      */
     public ResizingArrayQueue() {
         q = (Item[]) new Object[INIT_CAPACITY];
-        n = 0;
+        N = 0;
         first = 0;
         last = 0;
     }
 
     public void enqueue(Item item) {
-        if (n == q.length) resize(q.length * 2);    // double the size of the array if necessary
+        if (N == q.length) resize(q.length * 2);    // double the size of the array if necessary
         q[last++] = item;                                   // add item
         if (last == q.length) last = 0;                     // wrap-around
-        n++;
+        N++;
     }
 
     public Item dequeue() {
@@ -35,9 +45,9 @@ public class ResizingArrayQueue<Item> implements Iterable<Item>, QueueAPI<Item> 
         Item item = q[first];                                           // save the item to return
         q[first] = null;                                                // to avoid loitering
         first++;
-        n--;
+        N--;
         if (first == q.length) first = 0;                               // wrap-around
-        if (n > 0 && n == q.length / 4) resize(q.length / 2);   // shrink the size of the array if necessary
+        if (N > 0 && N == q.length / 4) resize(q.length / 2);   // shrink the size of the array if necessary
         return item;                                                    // return the saved item
     }
 
@@ -47,22 +57,22 @@ public class ResizingArrayQueue<Item> implements Iterable<Item>, QueueAPI<Item> 
     }
 
     public int size() {
-        return n;
+        return N;
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return N == 0;
     }
 
     // resize the underlying array holding the elements
     private void resize(int capacity) {
-        assert capacity >= n;
+        assert capacity >= N;
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < N; i++)
             copy[i] = q[(first + i) % q.length];
         q = copy;
         first = 0;
-        last = n;
+        last = N;
     }
 
     /**
@@ -79,7 +89,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item>, QueueAPI<Item> 
         private int i = 0;
 
         public boolean hasNext() {
-            return i < n;
+            return i < N;
         }
 
         public Item next() {
@@ -91,7 +101,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item>, QueueAPI<Item> 
     }
 
     /**
-     * Unit test the {@code ResizingArrayStack} data type.
+     * Unit test the {@code ResizingArrayQueue} data type.
      *
      * @param args the command-line arguments
      */

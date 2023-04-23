@@ -10,10 +10,10 @@ import java.util.NoSuchElementException;
  * The <em>add</em>, <em>isEmpty</em>, and <em>size</em> operations take constant time.
  * Iteration takes time proportional to the number of items.
  */
-public class LinkedBag<Item> implements Iterable<Item>, BagAPI<Item> {
+public class LinkedBag<Item> implements BagAPI<Item>, Iterable<Item> {
 
     private Node first;     // beginning of bag
-    private int n;          // number of elements in bag
+    private int N;          // size of the bag
 
     // helper linked list class
     private class Node {
@@ -26,7 +26,7 @@ public class LinkedBag<Item> implements Iterable<Item>, BagAPI<Item> {
      */
     public LinkedBag() {
         first = null;
-        n = 0;
+        N = 0;
     }
 
     public void add(Item item) {
@@ -34,11 +34,11 @@ public class LinkedBag<Item> implements Iterable<Item>, BagAPI<Item> {
         first = new Node();
         first.item = item;
         first.next = oldFirst;
-        n++;
+        N++;
     }
 
     public int size() {
-        return n;
+        return N;
     }
 
     public boolean isEmpty() {

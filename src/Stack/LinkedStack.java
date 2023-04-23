@@ -3,10 +3,17 @@ package Stack;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedStack<Item> implements Iterable<Item>, StackAPI<Item> {
+/**
+ * <p>
+ * This implementation of {@code StackAPI} uses a singly linked list with a non-static nested class Node.
+ * </p>
+ * The <em>push</em>, <em>pop</em>, <em>peek</em>, <em>size</em>, and <em>isEmpty</em> operations take constant time.
+ * Iteration takes time proportional to the number of items.
+ */
+public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
 
     private Node first;     // top of stack
-    private int n;          // size of the stack
+    private int N;          // size of the stack
 
     // helper linked list class
     private class Node {
@@ -19,7 +26,7 @@ public class LinkedStack<Item> implements Iterable<Item>, StackAPI<Item> {
      */
     public LinkedStack() {
         first = null;
-        n = 0;
+        N = 0;
     }
 
     public void push(Item item) {
@@ -27,14 +34,14 @@ public class LinkedStack<Item> implements Iterable<Item>, StackAPI<Item> {
         first = new Node();
         first.item = item;
         first.next = oldFirst;
-        n++;
+        N++;
     }
 
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         Item item = first.item;     // save the item to return
         first = first.next;         // delete the first node
-        n--;
+        N--;
         return item;                // return the saved item
     }
 
@@ -44,7 +51,7 @@ public class LinkedStack<Item> implements Iterable<Item>, StackAPI<Item> {
     }
 
     public int size() {
-        return n;
+        return N;
     }
 
     public boolean isEmpty() {

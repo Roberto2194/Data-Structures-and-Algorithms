@@ -7,60 +7,60 @@ import java.util.NoSuchElementException;
  * <p>
  * This implementation of {@code StackAPI} uses a resizing array,
  * which doubles the underlying array when it is full
- * and halves the underlying array when it is one-quarter full.
+ * and halves the underlying array when it is one quarter full.
  * </p>
  * The <em>push</em> and <em>pop</em> operations take constant amortized time.
  * The <em>size</em>, <em>peek</em>, and <em>isEmpty</em> operations take constant time.
  * Iteration takes time proportional to the number of items.
  */
-public class ResizingArrayStack<Item> implements Iterable<Item>, StackAPI<Item> {
+public class ResizingArrayStack<Item> implements StackAPI<Item>, Iterable<Item> {
 
     // initial capacity of underlying resizing array
     public static final int INIT_CAPACITY = 8;
 
     private Item[] s;       // stack elements
-    private int n;          // number of elements in stack
+    private int N;          // number of elements in stack
 
     /**
      * Initializes an empty stack.
      */
     public ResizingArrayStack() {
         s = (Item[]) new Object[INIT_CAPACITY];
-        n = 0;
+        N = 0;
     }
 
     public void push(Item item) {
-        if (n == s.length) resize(s.length * 2);
-        s[n++] = item;
+        if (N == s.length) resize(s.length * 2);
+        s[N++] = item;
     }
 
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        Item item = s[n-1];                                              // save the item to return
-        s[n-1] = null;                                                   // to avoid loitering
-        n--;
-        if (n > 0 && n == s.length / 4) resize(s.length / 2);   // shrink the size of the array if necessary
+        Item item = s[N -1];                                              // save the item to return
+        s[N -1] = null;                                                   // to avoid loitering
+        N--;
+        if (N > 0 && N == s.length / 4) resize(s.length / 2);   // shrink the size of the array if necessary
         return item;                                                    // return the saved item
     }
 
     public Item peek() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        return s[n - 1];
+        return s[N - 1];
     }
 
     public int size() {
-        return n;
+        return N;
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return N == 0;
     }
 
     // resize the underlying array holding the elements
     private void resize(int capacity) {
-        assert capacity >= n;
+        assert capacity >= N;
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < N; i++)
             copy[i] = s[i];
         s = copy;
     }
@@ -79,7 +79,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item>, StackAPI<Item> 
         private int i;
 
         public ReverseArrayIterator() {
-            i = n - 1;
+            i = N - 1;
         }
 
         public boolean hasNext() {
