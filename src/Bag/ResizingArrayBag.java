@@ -3,6 +3,11 @@ package Bag;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * This implementation of {@code BagAPI} uses a resizing array.
+ * The <em>add</em>, <em>isEmpty</em>, and <em>size</em> operations take constant time.
+ * Iteration takes time proportional to the number of items.
+ */
 public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
     // initial capacity of underlying resizing array
     public static final int INIT_CAPACITY = 8;
@@ -75,6 +80,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item>, BagAPI<Item> {
 
         System.out.println("size of bag = " + bag.size());
 
+        if (bag.isEmpty()) return;
         for (String s : bag) {
             System.out.println(s);
         }

@@ -1,5 +1,9 @@
 package Bag;
 
+/**
+ * The {@code BagAPI} represents a bag of generic items.
+ * It supports insertion and iterating over the items in arbitrary order.
+ */
 public interface BagAPI<Item> {
 
     /**

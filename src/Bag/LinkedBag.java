@@ -3,6 +3,11 @@ package Bag;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * This implementation of {@code BagAPI} uses a singly linked list with a non-static nested class Node.
+ * The <em>add</em>, <em>isEmpty</em>, and <em>size</em> operations take constant time.
+ * Iteration takes time proportional to the number of items.
+ */
 public class LinkedBag<Item> implements Iterable<Item>, BagAPI<Item> {
     private Node first;     // beginning of the bag
     private int n;          // number of elements in bag
@@ -78,6 +83,7 @@ public class LinkedBag<Item> implements Iterable<Item>, BagAPI<Item> {
 
         System.out.println("size of bag = " + bag.size());
 
+        if (bag.isEmpty()) return;
         for (String s : bag) {
             System.out.println(s);
         }
