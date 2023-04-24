@@ -8,8 +8,11 @@ package Sorting;
  * It performs exactly <em>n</em> exchanges.
  * <p>
  * This sorting algorithm is not stable. It uses &Theta;(1) extra memory
- * (not including the input array).
+ * (not including the input array).<br>
  * <p>
+ * Best case: &Omega;(<em>n</em><sup>2</sup>)<br>
+ * Average case: &Theta;(<em>n</em><sup>2</sup>)<br>
+ * Worst case: &Omicron;(<em>n</em><sup>2</sup>)
  */
 public class SelectionSort {
 
