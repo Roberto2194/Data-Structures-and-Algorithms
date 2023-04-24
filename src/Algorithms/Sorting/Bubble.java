@@ -1,7 +1,10 @@
 package Algorithms.Sorting;
 
+import static Algorithms.Sorting.Sortable.swap;
+import static Algorithms.Sorting.Sortable.less;
+
 /**
- * The {@code BubbleSort} class provides static methods for sorting an
+ * The {@code Bubble} class provides static methods for sorting an
  * array using bubble sort.
  * <p>
  * This implementation makes ~ 1/2 n^2 compares and exchanges in
@@ -21,57 +24,40 @@ package Algorithms.Sorting;
  * <b>Average case</b>: &Theta;(<em>n</em><sup>2</sup>)<br>
  * <b>Worst case</b>: &Omicron;(<em>n</em><sup>2</sup>)
  */
-public class BubbleSort {
+public class Bubble extends AbstractSort {
 
-    /**
-     * This class should not be instantiated.
-     */
-    private BubbleSort() { }
+    // this class should not be instantiated
+    private Bubble() {}
 
     /**
      * Rearranges the array in ascending order, using the natural order.
      *
      * @param a the array to be sorted
      */
-    public static void sort(Comparable[] a) {
+    public static <Key extends Comparable<Key>> void sort(Key[] a) {
+        int n = a.length;
 
-    }
-
-    // is the first element v less than the second w?
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
-    }
-
-    // exchange a[i] and a[j]
-    private static void exch(Comparable[] a, int i, int j) {
-        Comparable temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
-
-    // print the array, on a single line
-    public static void show(Comparable[] a) {
-        for (int i = 0; i < a.length; i++)
-            System.out.print(a[i] + " ");
-        System.out.println();
-    }
-
-    // test whether the array entries are in order
-    public static boolean isSorted(Comparable[] a) {
-        for (int i = 1; i < a.length; i++)
-            if (less(a[i], a[i - 1])) return false;
-        return true;
+        for (int i = 1; i < n; i++) {
+            int exchanges = 0;
+            for (int j = n - 1; j > i; j--) {
+                if (less(a[j], a[j - 1])) {
+                    swap(a, j, j - 1);
+                    exchanges++;
+                }
+            }
+            if (exchanges == 0) break;
+        }
     }
 
     /**
-     * Unit test the {@code BubbleSort} data type.
+     * Unit test the {@code Bubble} data type.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
         Integer[] a = {2, 23, 12, 17, 11, 9, 77, 45, 62, 22};
-        BubbleSort.sort(a);
-        if (BubbleSort.isSorted(a)) BubbleSort.show(a);
+        Bubble.sort(a);
+        if (Bubble.isSorted(a)) Bubble.show(a);
         else System.out.println("The values are not sorted!");
     }
 

@@ -2,19 +2,19 @@ package Algorithms.Searching;
 
 import java.util.Arrays;
 
+import static Algorithms.Sorting.Sortable.less;
+
 /**
- * The {@code BinarySearch} class provides a static method for binary
+ * The {@code Binary} class provides a static method for binary
  * searching for an integer in a sorted array of integers.
  * <p>
  * The <em>indexOf</em> operation takes logarithmic time in the worst case.
  * <p>
  */
-public class BinarySearch {
+public class Binary {
 
-    /**
-     * This class should not be instantiated.
-     */
-    private BinarySearch() { }
+    // this class should not be instantiated
+    private Binary() { }
 
     /**
      * Returns the index of the specified key in the specified array.
@@ -23,7 +23,7 @@ public class BinarySearch {
      * @param key the search key
      * @return index of the key in array {@code a} if present; {@code -1} otherwise
      */
-    public static int indexOf(Comparable[] a, Comparable key) {
+    public static <Key extends Comparable<Key>> int search(Key[] a, Key key) {
         int lo = 0;
         int hi = a.length - 1;
 
@@ -35,11 +35,6 @@ public class BinarySearch {
         }
 
         return -1;
-    }
-
-    // is the first element v less than the second w?
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
     }
 
     /**
@@ -55,7 +50,7 @@ public class BinarySearch {
         Arrays.sort(a);
 
         // perform the binary search
-        int result = BinarySearch.indexOf(a, key);
+        int result = Binary.search(a, key);
         if (result == -1) System.out.println("Couldn't find the key");
         else System.out.println("The key " + key + " is in the array at index: " + result);
     }

@@ -3,18 +3,16 @@ package Algorithms.Searching;
 import java.util.Arrays;
 
 /**
- * The {@code LinearSearch} class provides a static method for binary
+ * The {@code Linear} class provides a static method for binary
  * searching for an integer in a sorted array of integers.
  * <p>
  * The <em>indexOf</em> operations takes linear time in the worst case.
  * <p>
  */
-public class LinearSearch {
+public class Linear {
 
-    /**
-     * This class should not be instantiated.
-     */
-    private LinearSearch() { }
+    // this class should not be instantiated
+    private Linear() { }
 
     /**
      * Returns the index of the specified key in the specified array.
@@ -23,10 +21,10 @@ public class LinearSearch {
      * @param key the search key
      * @return index of the key in array {@code a} if present; {@code -1} otherwise
      */
-    public static int indexOf(Comparable[] a, Comparable key) {
-        int N = a.length;
+    public static <Key extends Comparable<Key>> int search(Key[] a, Key key) {
+        int n = a.length;
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             if (a[i] == key) return i;
         }
 
@@ -46,7 +44,7 @@ public class LinearSearch {
         Arrays.sort(a);
 
         // perform the binary search
-        int result = LinearSearch.indexOf(a, key);
+        int result = Linear.search(a, key);
         if (result == -1) System.out.println("Couldn't find the key");
         else System.out.println("The key " + key + " is in the array at index: " + result);
     }
