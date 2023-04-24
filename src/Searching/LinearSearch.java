@@ -23,7 +23,7 @@ public class LinearSearch {
      * @param key the search key
      * @return index of the key in array {@code a} if present; {@code -1} otherwise
      */
-    public static int indexOf(int[] a, int key) {
+    public static int indexOf(Comparable[] a, Comparable key) {
         int N = a.length;
 
         for (int i = 0; i < N; i++) {
@@ -39,7 +39,7 @@ public class LinearSearch {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        int[] a = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+        Integer[] a = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
         int key = 17;
 
         // sort the array
