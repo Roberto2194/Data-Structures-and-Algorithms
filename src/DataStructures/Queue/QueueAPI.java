@@ -1,4 +1,4 @@
-package Queue;
+package DataStructures.Queue;
 
 /**
  * The {@code QueueAPI} represents a first-in-first-out (FIFO) queue of generic items.

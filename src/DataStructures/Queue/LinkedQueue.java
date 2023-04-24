@@ -1,4 +1,4 @@
-package Queue;
+package DataStructures.Queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -42,7 +42,7 @@ public class LinkedQueue<Item> implements QueueAPI<Item>, Iterable<Item> {
     }
 
     public Item dequeue() {
-        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Queue underflow");
         Item item = first.item;     // save the item to return
         first = first.next;         // delete the first node
         N--;
@@ -50,7 +50,7 @@ public class LinkedQueue<Item> implements QueueAPI<Item>, Iterable<Item> {
     }
 
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Queue underflow");
         return first.item;
     }
 

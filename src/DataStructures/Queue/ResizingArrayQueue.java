@@ -1,4 +1,4 @@
-package Queue;
+package DataStructures.Queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -41,7 +41,7 @@ public class ResizingArrayQueue<Item> implements QueueAPI<Item>, Iterable<Item> 
     }
 
     public Item dequeue() {
-        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Queue underflow");
         Item item = q[first];                                           // save the item to return
         q[first] = null;                                                // to avoid loitering
         first++;
@@ -52,7 +52,7 @@ public class ResizingArrayQueue<Item> implements QueueAPI<Item>, Iterable<Item> 
     }
 
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Queue underflow");
         return q[first];
     }
 

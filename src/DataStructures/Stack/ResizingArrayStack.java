@@ -1,4 +1,4 @@
-package Stack;
+package DataStructures.Stack;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -35,7 +35,7 @@ public class ResizingArrayStack<Item> implements StackAPI<Item>, Iterable<Item> 
     }
 
     public Item pop() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Stack underflow");
         Item item = s[N -1];                                              // save the item to return
         s[N -1] = null;                                                   // to avoid loitering
         N--;
@@ -44,7 +44,7 @@ public class ResizingArrayStack<Item> implements StackAPI<Item>, Iterable<Item> 
     }
 
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Stack underflow");
         return s[N - 1];
     }
 

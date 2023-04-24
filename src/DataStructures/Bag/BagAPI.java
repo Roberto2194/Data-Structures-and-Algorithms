@@ -1,4 +1,4 @@
-package Bag;
+package DataStructures.Bag;
 
 /**
  * The {@code BagAPI} represents a bag of generic items.

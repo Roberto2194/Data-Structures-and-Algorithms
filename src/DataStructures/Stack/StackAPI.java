@@ -1,4 +1,4 @@
-package Stack;
+package DataStructures.Stack;
 
 /**
  * The {@code StackAPI} represents a last-in-first-out (LIFO) stack of generic items.

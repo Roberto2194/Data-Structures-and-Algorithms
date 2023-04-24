@@ -1,20 +1,20 @@
-package Searching;
+package Algorithms.Searching;
 
 import java.util.Arrays;
 
 /**
- * The {@code LinearSearch} class provides a static method for binary
+ * The {@code BinarySearch} class provides a static method for binary
  * searching for an integer in a sorted array of integers.
  * <p>
- * The <em>indexOf</em> operations takes linear time in the worst case.
+ * The <em>indexOf</em> operation takes logarithmic time in the worst case.
  * <p>
  */
-public class LinearSearch {
+public class BinarySearch {
 
     /**
      * This class should not be instantiated.
      */
-    private LinearSearch() { }
+    private BinarySearch() { }
 
     /**
      * Returns the index of the specified key in the specified array.
@@ -24,13 +24,22 @@ public class LinearSearch {
      * @return index of the key in array {@code a} if present; {@code -1} otherwise
      */
     public static int indexOf(Comparable[] a, Comparable key) {
-        int N = a.length;
+        int lo = 0;
+        int hi = a.length - 1;
 
-        for (int i = 0; i < N; i++) {
-            if (a[i] == key) return i;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if      (less(key, a[mid])) hi = mid - 1;   // lower the hi below the mid-point
+            else if (less(a[mid], key)) lo = mid + 1;   // raise the lo above the mid-point
+            else return mid;
         }
 
         return -1;
+    }
+
+    // is the first element v less than the second w?
+    private static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;
     }
 
     /**
@@ -46,7 +55,7 @@ public class LinearSearch {
         Arrays.sort(a);
 
         // perform the binary search
-        int result = LinearSearch.indexOf(a, key);
+        int result = BinarySearch.indexOf(a, key);
         if (result == -1) System.out.println("Couldn't find the key");
         else System.out.println("The key " + key + " is in the array at index: " + result);
     }

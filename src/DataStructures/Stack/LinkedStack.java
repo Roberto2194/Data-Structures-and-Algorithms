@@ -1,4 +1,4 @@
-package Stack;
+package DataStructures.Stack;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -38,7 +38,7 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
     }
 
     public Item pop() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Stack underflow");
         Item item = first.item;     // save the item to return
         first = first.next;         // delete the first node
         N--;
@@ -46,7 +46,7 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
     }
 
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty()) throw new NoSuchElementException("DataStructures.Stack underflow");
         return first.item;
     }
 
