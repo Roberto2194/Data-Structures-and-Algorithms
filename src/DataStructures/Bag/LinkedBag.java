@@ -5,7 +5,8 @@ import java.util.NoSuchElementException;
 
 /**
  * <p>
- * This implementation of {@code BagAPI} uses a singly linked list with a non-static nested class Node.
+ * This implementation of {@code BagAPI} uses a singly linked list
+ * with a non-static nested class Node.
  * </p>
  * The <em>add</em>, <em>isEmpty</em>, and <em>size</em> operations take constant time.
  * Iteration takes time proportional to the number of items.
@@ -13,7 +14,7 @@ import java.util.NoSuchElementException;
 public class LinkedBag<Item> implements BagAPI<Item>, Iterable<Item> {
 
     private Node first;     // beginning of bag
-    private int N;          // size of the bag
+    private int n;          // size of the bag
 
     // helper linked list class
     private class Node {
@@ -26,7 +27,7 @@ public class LinkedBag<Item> implements BagAPI<Item>, Iterable<Item> {
      */
     public LinkedBag() {
         first = null;
-        N = 0;
+        n = 0;
     }
 
     public void add(Item item) {
@@ -34,11 +35,11 @@ public class LinkedBag<Item> implements BagAPI<Item>, Iterable<Item> {
         first = new Node();
         first.item = item;
         first.next = oldFirst;
-        N++;
+        n++;
     }
 
     public int size() {
-        return N;
+        return n;
     }
 
     public boolean isEmpty() {
@@ -56,11 +57,7 @@ public class LinkedBag<Item> implements BagAPI<Item>, Iterable<Item> {
 
     // an iterator over a linked list
     private class LinkedIterator implements Iterator<Item> {
-        private Node current;
-
-        public LinkedIterator() {
-            current = first;
-        }
+        private Node current = first;
 
         public boolean hasNext() {
             return current != null;
@@ -71,24 +68,6 @@ public class LinkedBag<Item> implements BagAPI<Item>, Iterable<Item> {
             Item item = current.item;
             current = current.next;
             return item;
-        }
-    }
-
-    /**
-     * Unit test the {@code LinkedBag} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        LinkedBag<String> bag = new LinkedBag<>();
-        bag.add("Hello");
-        bag.add("World");
-
-        System.out.println("size of bag = " + bag.size());
-
-        if (bag.isEmpty()) return;
-        for (String s : bag) {
-            System.out.println(s);
         }
     }
 

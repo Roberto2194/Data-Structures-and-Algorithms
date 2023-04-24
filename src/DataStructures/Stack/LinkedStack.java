@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
 
     private Node first;     // top of stack
-    private int N;          // size of the stack
+    private int n;          // size of the stack
 
     // helper linked list class
     private class Node {
@@ -26,7 +26,7 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
      */
     public LinkedStack() {
         first = null;
-        N = 0;
+        n = 0;
     }
 
     public void push(Item item) {
@@ -34,14 +34,14 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
         first = new Node();
         first.item = item;
         first.next = oldFirst;
-        N++;
+        n++;
     }
 
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("DataStructures.Stack underflow");
         Item item = first.item;     // save the item to return
         first = first.next;         // delete the first node
-        N--;
+        n--;
         return item;                // return the saved item
     }
 
@@ -51,7 +51,7 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
     }
 
     public int size() {
-        return N;
+        return n;
     }
 
     public boolean isEmpty() {
@@ -69,11 +69,7 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
 
     // an iterator over a linked list, in reverse order
     private class ReverseLinkedIterator implements Iterator<Item> {
-        private Node current;
-
-        public ReverseLinkedIterator() {
-            current = first;
-        }
+        private Node current = first;
 
         public boolean hasNext() {
             return current != null;
@@ -84,29 +80,6 @@ public class LinkedStack<Item> implements StackAPI<Item>, Iterable<Item> {
             Item item = current.item;
             current = current.next;
             return item;
-        }
-    }
-
-    /**
-     * Unit test the {@code LinkedStack} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        LinkedStack<Integer> stack = new LinkedStack<>();
-        stack.push(25);
-        stack.push(50);
-        stack.push(75);
-        stack.push(100);
-        stack.push(125);
-
-        System.out.println("peeking the element on top of the stack = " + stack.peek());
-        System.out.println("popping out the element on top of the stack = " + stack.pop());
-        System.out.println("size of stack = " + stack.size());
-
-        if (stack.isEmpty()) return;
-        for (int i : stack) {
-            System.out.println(i);
         }
     }
 

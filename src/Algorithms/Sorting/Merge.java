@@ -1,7 +1,5 @@
 package Algorithms.Sorting;
 
-import static Algorithms.Sorting.Sortable.less;
-
 /**
  * The {@code Merge} class provides static methods for sorting an
  * array using a top-down, recursive version of <em>mergesort</em>.
@@ -19,7 +17,7 @@ import static Algorithms.Sorting.Sortable.less;
  * <b>Average case</b>: &Theta;(<em>n</em> <em>log</em>(<em>n</em>))<br>
  * <b>Worst case</b>: &Omicron;(<em>n</em> <em>log</em>(<em>n</em>))
  */
-public class Merge extends AbstractSort {
+public class Merge {
 
     // this class should not be instantiated
     private Merge() { }
@@ -29,13 +27,13 @@ public class Merge extends AbstractSort {
      *
      * @param a the array to be sorted
      */
-    public static <Key extends Comparable<Key>> void sort(Key[] a) {
+    public static void sort(Comparable[] a) {
         Comparable[] aux = new Comparable[a.length];
         sort(a, aux, 0, a.length-1);
     }
 
     // mergesort a[lo..hi] using auxiliary array aux[lo..hi]
-    private static <Key extends Comparable<Key>> void sort(Key[] a, Key[] aux, int lo, int hi) {
+    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
         if (hi <= lo) return;
         int mid = lo + (hi - lo) / 2;
         sort(a, aux, lo, mid);
@@ -44,7 +42,7 @@ public class Merge extends AbstractSort {
     }
 
     // stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
-    private static <Key extends Comparable<Key>> void merge(Key[] a, Key[] aux, int lo, int mid, int hi) {
+    private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
 
         // copy to aux[]
         for (int k = lo; k <= hi; k++) {
@@ -62,16 +60,21 @@ public class Merge extends AbstractSort {
         }
     }
 
-    /**
-     * Unit test the {@code Merge} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        Integer[] a = {2, 23, 12, 17, 11, 9, 77, 45, 62, 22};
-        Merge.sort(a);
-        if (Merge.isSorted(a)) Merge.show(a);
-        else System.out.println("The values are not sorted!");
+    // print the array, on a single line
+    public static void show(Object[] a) {
+        for (Object key : a) System.out.print(key + " ");
+        System.out.println();
+    }
+
+    // test whether the array entries are in order
+    public static boolean isSorted(Comparable[] a) {
+        for (int i = 1; i < a.length; i++) if (less(a[i], a[i - 1])) return false;
+        return true;
+    }
+
+    // is the first element v less than the second w?
+    private static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;
     }
 
 }

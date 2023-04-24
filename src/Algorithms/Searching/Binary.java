@@ -1,9 +1,5 @@
 package Algorithms.Searching;
 
-import java.util.Arrays;
-
-import static Algorithms.Sorting.Sortable.less;
-
 /**
  * The {@code Binary} class provides a static method for binary
  * searching for an integer in a sorted array of integers.
@@ -23,7 +19,7 @@ public class Binary {
      * @param key the search key
      * @return index of the key in array {@code a} if present; {@code -1} otherwise
      */
-    public static <Key extends Comparable<Key>> int search(Key[] a, Key key) {
+    public static int search(Comparable[] a, Comparable key) {
         int lo = 0;
         int hi = a.length - 1;
 
@@ -37,22 +33,9 @@ public class Binary {
         return -1;
     }
 
-    /**
-     * Unit test the {@code LinkedStack} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        Integer[] a = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
-        int key = 17;
-
-        // sort the array
-        Arrays.sort(a);
-
-        // perform the binary search
-        int result = Binary.search(a, key);
-        if (result == -1) System.out.println("Couldn't find the key");
-        else System.out.println("The key " + key + " is in the array at index: " + result);
+    // is the first element v less than the second w?
+    static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;
     }
 
 }

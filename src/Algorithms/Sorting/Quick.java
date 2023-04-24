@@ -2,9 +2,6 @@ package Algorithms.Sorting;
 
 import Algorithms.Shuffle;
 
-import static Algorithms.Sorting.Sortable.swap;
-import static Algorithms.Sorting.Sortable.less;
-
 /**
  * The {@code Quick} class provides static methods for sorting an
  * array and selecting the ith smallest element in an array using quicksort.
@@ -13,7 +10,7 @@ import static Algorithms.Sorting.Sortable.less;
  * <b>Average case</b>: &Theta;(<em>n</em> <em>log</em>(<em>n</em>))<br>
  * <b>Worst case</b>: &Omicron;(<em>n</em><sup>2</sup>)
  */
-public class Quick extends AbstractSort {
+public class Quick {
 
     // this class should not be instantiated
     private Quick() { }
@@ -66,16 +63,26 @@ public class Quick extends AbstractSort {
         return j;
     }
 
-    /**
-     * Unit test the {@code Quick} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        Integer[] a = {2, 23, 12, 17, 11, 9, 77, 45, 62, 22};
-        Quick.sort(a);
-        if (Quick.isSorted(a)) Quick.show(a);
-        else System.out.println("The values are not sorted!");
+    // print the array, on a single line
+    public static void show(Object[] a) {
+        for (Object key : a) System.out.print(key + " ");
+        System.out.println();
+    }
+
+    // test whether the array entries are in order
+    public static boolean isSorted(Comparable[] a) {
+        for (int i = 1; i < a.length; i++) if (less(a[i], a[i - 1])) return false;
+        return true;
+    }
+
+    // is the first element v less than the second w?
+    private static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;
+    }
+
+    // exchange a[i] and a[j]
+    private static void swap(Object[] a, int i, int j) {
+        Object temp = a[i]; a[i] = a[j]; a[j] = temp;
     }
 
 }

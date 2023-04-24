@@ -1,7 +1,5 @@
 package Algorithms;
 
-import static Algorithms.Sorting.Sortable.swap;
-
 /**
  *  The {@code Shuffle} class provides a client for reading in a
  *  sequence of strings and <em>shuffling</em> them using the Shuffle (or Fisher-Yates)
@@ -30,19 +28,10 @@ public class Shuffle {
         }
     }
 
-    /**
-     * Unit test the {@code Shuffle} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        Integer[] a = {2, 23, 12, 17, 11, 9, 77, 45, 62, 22};
-
-        // shuffle the array
-        Shuffle.random(a);
-
-        // print results.
-        for (Integer integer : a) System.out.print(integer + " ");
+    // exchange a[i] and a[j]
+    private static void swap(Object[] a, int i, int j) {
+        Object temp = a[i]; a[i] = a[j]; a[j] = temp;
     }
+
 }
 

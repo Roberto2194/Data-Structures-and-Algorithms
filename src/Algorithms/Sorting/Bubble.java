@@ -1,8 +1,5 @@
 package Algorithms.Sorting;
 
-import static Algorithms.Sorting.Sortable.swap;
-import static Algorithms.Sorting.Sortable.less;
-
 /**
  * The {@code Bubble} class provides static methods for sorting an
  * array using bubble sort.
@@ -24,7 +21,7 @@ import static Algorithms.Sorting.Sortable.less;
  * <b>Average case</b>: &Theta;(<em>n</em><sup>2</sup>)<br>
  * <b>Worst case</b>: &Omicron;(<em>n</em><sup>2</sup>)
  */
-public class Bubble extends AbstractSort {
+public class Bubble {
 
     // this class should not be instantiated
     private Bubble() {}
@@ -34,7 +31,7 @@ public class Bubble extends AbstractSort {
      *
      * @param a the array to be sorted
      */
-    public static <Key extends Comparable<Key>> void sort(Key[] a) {
+    public static void sort(Comparable[] a) {
         int n = a.length;
 
         for (int i = 1; i < n; i++) {
@@ -49,16 +46,26 @@ public class Bubble extends AbstractSort {
         }
     }
 
-    /**
-     * Unit test the {@code Bubble} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        Integer[] a = {2, 23, 12, 17, 11, 9, 77, 45, 62, 22};
-        Bubble.sort(a);
-        if (Bubble.isSorted(a)) Bubble.show(a);
-        else System.out.println("The values are not sorted!");
+    // print the array, on a single line
+    public static void show(Object[] a) {
+        for (Object key : a) System.out.print(key + " ");
+        System.out.println();
+    }
+
+    // test whether the array entries are in order
+    public static boolean isSorted(Comparable[] a) {
+        for (int i = 1; i < a.length; i++) if (less(a[i], a[i - 1])) return false;
+        return true;
+    }
+
+    // is the first element v less than the second w?
+    private static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;
+    }
+
+    // exchange a[i] and a[j]
+    private static void swap(Object[] a, int i, int j) {
+        Object temp = a[i]; a[i] = a[j]; a[j] = temp;
     }
 
 }
