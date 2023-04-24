@@ -1,5 +1,16 @@
 package Sorting;
 
+/**
+ * The {@code Selection} class provides static methods for sorting an
+ * array using <em>selection sort</em>.<br>
+ * This implementation makes ~ &frac12; <em>n</em><sup>2</sup> compares to sort
+ * any array of length <em>n</em>, so it is not suitable for sorting large arrays.
+ * It performs exactly <em>n</em> exchanges.
+ * <p>
+ * This sorting algorithm is not stable. It uses &Theta;(1) extra memory
+ * (not including the input array).
+ * <p>
+ */
 public class SelectionSort {
 
     /**
