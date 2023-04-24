@@ -43,7 +43,6 @@ public class ResizingArrayBag<Item> implements BagAPI<Item>, Iterable<Item> {
 
     // resize the underlying array holding the elements
     private void resize(int capacity) {
-        assert capacity >= N;
         Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i < N; i++)
             copy[i] = b[i];
