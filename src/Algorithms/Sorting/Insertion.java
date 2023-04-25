@@ -2,7 +2,7 @@ package Algorithms.Sorting;
 
 /**
  * The {@code Insertion} class provides static methods for sorting an
- * array using insertion sort.
+ * array using <em>insertion sort</em>.
  * <p>
  * In the worst case, this implementation makes ~ &frac12; <em>n</em><sup>2</sup>
  * compares and ~ &frac12; <em>n</em><sup>2</sup> exchanges to sort an array

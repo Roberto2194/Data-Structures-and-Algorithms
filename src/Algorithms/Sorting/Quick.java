@@ -4,7 +4,18 @@ import Algorithms.Shuffle;
 
 /**
  * The {@code Quick} class provides static methods for sorting an
- * array and selecting the ith smallest element in an array using quicksort.
+ * array and selecting the ith smallest element in an array using <em>quicksort</em>.
+ * <p>
+ * Quicksort, just like mergesort, is a <em>divide-and-conquer</em> method for sorting.
+ * It works by <em>partitioning</em> an array into two subarrays, and then sorting
+ * the subarrays independently using <em>recursion</em>.
+ * <p>
+ * This algorithm is probably the most used sorting algorithm since it is in-place
+ * (uses only a small auxiliary stack), and it requires time proportional
+ * to &Theta;(<em>n</em> log <em>n</em>) on average to sort an array of length <em>n</em>.
+ * <p>
+ * This sorting algorithm is not stable.
+ * It uses &Theta;(<em>log n</em>) extra memory (not including the input array).
  * <p>
  * <b>Best case</b>: &Omega;(<em>n</em> <em>log</em>(<em>n</em>))<br>
  * <b>Average case</b>: &Theta;(<em>n</em> <em>log</em>(<em>n</em>))<br>
@@ -21,7 +32,7 @@ public class Quick {
      * @param a the array to be sorted
      */
     public static void sort(Comparable[] a) {
-        Shuffle.random(a);
+        Shuffle.random(a);                  // eliminate dependence on input.
         sort(a, 0, a.length - 1);
     }
 
@@ -29,38 +40,25 @@ public class Quick {
     private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
         int j = partition(a, lo, hi);
-        sort(a, lo, j-1);
-        sort(a, j+1, hi);
+        sort(a, lo, j-1);               // sort left part a[lo..j-1]
+        sort(a, j+1, hi);               // sort right part a[j+1..hi]
     }
 
-    // partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi] // and return the index j.
+    // partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi]
+    // and return the index j.
     private static int partition(Comparable[] a, int lo, int hi) {
-        int i = lo;
-        int j = hi + 1;
-        Comparable v = a[lo];
+        int i = lo, j = hi + 1;     // left and right scan indices
+        Comparable v = a[lo];       // partitioning item
 
         while (true) {
-            // find item on lo to swap
-            while (less(a[++i], v)) {
-                if (i == hi) break;
-            }
-
-            // find item on hi to swap
-            while (less(v, a[--j])) {
-                if (j == lo) break;     // redundant since a[lo] acts as sentinel
-            }
-
-            // check if pointers cross
-            if (i >= j) break;
-
+            while (less(a[++i], v)) if (i == hi) break;     // find item on lo to swap
+            while (less(v, a[--j])) if (j == lo) break;     // find item on hi to swap
+            if (i >= j) break;                              // check if pointers cross (scan complete)
             swap(a, i, j);
         }
 
-        // put partitioning item v at a[j]
-        swap(a, lo, j);
-
-        // now, a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
-        return j;
+        swap(a, lo, j);             // put partitioning item v = a[j] into position
+        return j;                   // with a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
     }
 
     // print the array, on a single line

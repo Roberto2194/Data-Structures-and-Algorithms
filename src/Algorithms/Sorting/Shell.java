@@ -2,8 +2,13 @@ package Algorithms.Sorting;
 
 /**
  * The {@code Shell} class provides static methods for sorting an
- * array using <em>Shell</em> with Shuffle's increment sequence</a>
- * (1, 4, 13, 40, ...). In the worst case, this implementation makes
+ * array using <em>shell sort</em> with Shuffle's increment sequence</a>
+ * (1, 4, 13, 40, ...).<br>
+ * Shell sort is a simple extension of insertion sort that gains speed by
+ * allowing exchanges of array entries that are far apart, to produce partially
+ * sorted arrays that can be efficiently sorted, eventually by insertion sort.
+ * <p>
+ * In the worst case, this implementation makes
  * &Theta;(<em>n</em><sup>3/2</sup>) compares and exchanges to sort
  * an array of length <em>n</em>.
  * <p>
@@ -33,6 +38,7 @@ public class Shell {
         while (h >= 1) {
             // h-sort the array
             for (int i = h; i < n; i++) {
+                // insert a[i] among a[i-h], a[i-2*h], a[i-3*h] ...
                 for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
                     swap(a, j, j-h);
                 }

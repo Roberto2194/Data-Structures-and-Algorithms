@@ -2,7 +2,8 @@ package Algorithms.Sorting;
 
 /**
  * The {@code Selection} class provides static methods for sorting an
- * array using <em>selection sort</em>.<br>
+ * array using <em>selection sort</em>.
+ * <p>
  * This implementation makes ~ &frac12; <em>n</em><sup>2</sup> compares to sort
  * any array of length <em>n</em>, so it is not suitable for sorting large arrays.
  * It performs exactly <em>n</em> exchanges.
