@@ -27,7 +27,7 @@ What is an Algorithm? A collection of steps to solve a problem
 
 - **O(n<sup>2</sup>)** = quadratic time<br>
            • insertion sort<br>
-           • selection sort
+           • selection sort<br>
            • bubble sort
 
 - **O(n!)** = factorial time<br>
