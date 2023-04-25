@@ -9,5 +9,5 @@ A <b>stack</b> is a linear data structure in which the insertion of a new elemen
 - **push()** adds an element into the stack.
 - **pop()** removes an element from the stack.
 - **peek()** returns (but does not remove) the element of top of the stack.
-- **isEmpty()** returns true if stack is empty, else false.
 - **size()** returns the size of stack.
+- **isEmpty()** returns true if stack is empty, else false.
