@@ -2,7 +2,7 @@ package Algorithms.Sorting;
 
 /**
  * The {@code Bubble} class provides static methods for sorting an
- * array using bubble sort.
+ * array using <em>bubble sort</em>.
  * <p>
  * This implementation makes ~ 1/2 n^2 compares and exchanges in
  * the worst case, so it is not suitable for sorting large arbitrary arrays.
@@ -35,14 +35,14 @@ public class Bubble {
         int n = a.length;
 
         for (int i = 1; i < n; i++) {
-            int exchanges = 0;
+            boolean exchanges = false;
             for (int j = n - 1; j > i; j--) {
                 if (less(a[j], a[j - 1])) {
                     swap(a, j, j - 1);
-                    exchanges++;
+                    exchanges = true;
                 }
             }
-            if (exchanges == 0) break;
+            if (!exchanges) break;
         }
     }
 
