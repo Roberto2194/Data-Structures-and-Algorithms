@@ -36,7 +36,7 @@ public class Heap {
         // sortdown phase
         int k = n;
         while (k > 1) {
-            exch(pq, 1, k--);
+            swap(pq, 1, k--);
             sink(pq, 1, k);
         }
     }
