@@ -14,7 +14,6 @@ The binary heap data structure is considered to be the most efficient way of imp
 ![different-pq-implementations-complexity](https://user-images.githubusercontent.com/57627290/234576328-3d9d8277-54c9-4d9a-807c-a1890018f0a9.png)
 
 <b>Definition:</b> A binary tree is <em>heap-ordered</em> if the key in each node is larger than or equal to the keys in that node's two children (if any).
-Therefore, we can say that there are two types of heaps:
 
 <b>Definition:</b> A <em>binary heap</em> is a collection of keys arranged in a complete heap-ordered binary tree, represented in level order in an array (not using the first entry).
 
