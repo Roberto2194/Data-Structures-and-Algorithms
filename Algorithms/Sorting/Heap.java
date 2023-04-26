@@ -29,15 +29,15 @@ public class Heap {
     public static void sort(Comparable[] pq) {
         int n = pq.length;
 
-        // heapify phase
+        // the for loop constructs the heap
         for (int k = n / 2; k >= 1; k--)
             sink(pq, k, n);
 
-        // sortdown phase
-        int k = n;
-        while (k > 1) {
-            swap(pq, 1, k--);
-            sink(pq, 1, k);
+        // the while loop exchanges the largest element a[1] with a[n]
+        // and then repairs the heap, continuing until the heap is empty
+        while (n > 1) {
+            swap(pq, 1, n--);
+            sink(pq, 1, n);
         }
     }
 
@@ -57,22 +57,16 @@ public class Heap {
         System.out.println();
     }
 
-    // test whether the array entries are in order
-    public static boolean isSorted(Comparable[] a) {
-        for (int i = 1; i < a.length; i++) if (less(a[i], a[i - 1])) return false;
-        return true;
-    }
-
     // is the first element v less than the second w?
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
+    private static boolean less(Comparable[] pq, int i, int j) {
+        return pq[i-1].compareTo(pq[j-1]) < 0;
     }
 
     // exchange a[i] and a[j]
-    private static void swap(Object[] a, int i, int j) {
-        Object temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
+    private static void swap(Object[] pq, int i, int j) {
+        Object swap = pq[i-1];
+        pq[i-1] = pq[j-1];
+        pq[j-1] = swap;
     }
 
 }
