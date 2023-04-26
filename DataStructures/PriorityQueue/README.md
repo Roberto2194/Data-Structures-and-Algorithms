@@ -11,6 +11,8 @@ The priority queue can be implemented in four ways that include:
 
 The binary heap data structure is considered to be the most efficient way of implementing the priority queue.
 
+![different-pq-implementations-complexity](https://user-images.githubusercontent.com/57627290/234576328-3d9d8277-54c9-4d9a-807c-a1890018f0a9.png)
+
 <b>Definition:</b> A binary tree is <em>heap-ordered</em> if the key in each node is larger than or equal to the keys in that node's two children (if any).
 Therefore, we can say that there are two types of heaps:
 
@@ -18,9 +20,11 @@ Therefore, we can say that there are two types of heaps:
 
 - **Max heap**: The max heap is a heap in which the value of the parent node is greater than the value of the child nodes.
 
+![max-heap](https://user-images.githubusercontent.com/57627290/234576756-de731bb2-0caf-4ec1-8797-94ef878048a9.png)
+
 - **Min heap**: The min heap is a heap in which the value of the parent node is less than the value of the child nodes.
 
-![Queue-Data-Structure](https://user-images.githubusercontent.com/57627290/234299529-d0c5505c-7651-45d1-8e5a-1bd3390bdeba.png)
+![min-heap](https://user-images.githubusercontent.com/57627290/234576822-12fa6fb7-8847-4e49-ad08-7687225854aa.png)
 
 ## Basic Operations:
 
